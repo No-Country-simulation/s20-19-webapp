@@ -14,7 +14,7 @@
 - **Ezequiel Pérez** – Argentina
 
 ### Frontend
-- **Karen Urbano** – Venezuela
+- **Karen Urbano** – Colombia
 
 ### UX/UI
 - **Claudia López Garcidueñas** – México
