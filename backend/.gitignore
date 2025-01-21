@@ -1,0 +1,940 @@
+# Operating System Specific
+.DS_Store
+Thumbs.db
+
+# IDEs and Editors
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Build Outputs
+/dist/
+/build/
+/bin/
+
+# Logs
+*.log
+
+# Environment Variables
+.env
+.dockerenv
+.gitattributes
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git
+.gitignore
+npm-debug.log
+yarn-error.log
+yarn.lock
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration.xml
+
+# WSL
+/.DS_Store
+
+# VSCode Remote Development
+.vscode-server/
+
+# Git
+.gitattributes
+.gitignore_global
+
+# Build Output
+/build/
+/dist/
+
+# Logs
+*.log
+*.out
+
+# Environment Variables
+.env
+.dockerenv
+
+# OS Generated Files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# IDE Specific
+.vscode/
+.idea/
+*.iml
+*.ipr
+*.iws
+*.c9pid
+.project
+.cproject
+
+# Version Control
+.git/
+.gitignore
+
+# Dependency Directories
+/node_modules/
+bower_components/
+
+# Test Coverage
+/coverage/
+
+# Grunt
+.tmp
+
+# Bower
+/bower_components/
+
+# RVM
+*.rvmrc
+
+# CRAN
+.CITATION
+
+# PyCharm
+*.idea
+/.idea
+*.iml
+*.ipr
+*.iws
+/out/
+/.vscode
+
+# Docker
+/Dockerfile
+/docker-compose.yml
+.dockerignore
+
+# macOS
+.DS_Store
+
+# Windows
+Thumbs.db
+
+# Visual Studio Code
+.vscode/
+
+# IntelliJ IDEA
+.idea/
+
+# Eclipse
+.metadata/
+bin/
+tmp/
+target/
+*.tmp
+*.bak
+*.swp
+*~
+.classpath
+.settings/
+.loadpath
+
+# NetBeans
+nbbuild/
+netbeans.conf
+nb-configuration```
