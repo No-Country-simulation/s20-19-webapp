@@ -942,3 +942,8 @@ netbeans.conf
 nb-configuration```
 FastAPI/venv
 
+
+#Caché
+__pycache__/
+utils/__pycache__/ 
+
