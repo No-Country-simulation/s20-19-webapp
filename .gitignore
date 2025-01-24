@@ -941,4 +941,4 @@ nbbuild/
 netbeans.conf
 nb-configuration```
 FastAPI/venv
-
+venv/
