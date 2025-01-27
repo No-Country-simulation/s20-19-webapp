@@ -9,4 +9,6 @@ class Comment(Base):
     id = Column(String, primary_key=True)
     comment = Column(String, nullable=False)
     user_id = Column(String, ForeignKey('users.id'))
+    user = relationship('User', back_populates='comments')
     publication_id = Column(String, ForeignKey('publications.id'))
+    publication = relationship('Publication', back_populates='comments')

@@ -10,4 +10,4 @@ class Location(Base):
     city = Column(String, nullable=False)
     state = Column(String, nullable=False)
     country = Column(String, nullable=False)
-    shops = relationship("Shop", secondary='ShopLocation', back_populates='locations')
+    shops = relationship("Shop", secondary='shop_location', back_populates='locations')

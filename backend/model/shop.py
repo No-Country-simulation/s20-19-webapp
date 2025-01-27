@@ -10,5 +10,5 @@ class Shop(Base):
     name = Column(String, nullable=False)
     address = Column(String, nullable=True)
     location = Column(String, nullable=True)
-    locations = relationship("Location", secondary='ShopLocation', back_populates='shops')
-    publication = relationship("Publication", back_populates='shops')
+    locations = relationship("Location", secondary='shop_location', back_populates='shops')
+    publications = relationship("Publication", back_populates='shops')
