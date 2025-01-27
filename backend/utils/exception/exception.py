@@ -7,7 +7,8 @@ class AhorraYaAPIException(Exception):
 
     def __init__(self, message: str = "Service is unavailable"):
         self.message = message
-        super().__init__(self.message, self.name)
+        self.name = self.__class__.__name__
+        super().__init__(self.message)
 
 
 class ServiceError(AhorraYaAPIException):

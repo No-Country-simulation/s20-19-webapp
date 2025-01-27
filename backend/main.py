@@ -1,26 +1,16 @@
-from fastapi import FastAPI
+from fastapi import APIRouter, FastAPI
 import uvicorn
-from utils.config import settings
-from sqlalchemy import create_engine
-from sqlalchemy.orm import sessionmaker, declarative_base
+from api import product_routes
+from utils.config import Base, engine
+from model import comment, location, product, publication, shop, shop_location, user
+from utils.router import router
 
 app = FastAPI()
 
-DATABASE_URL = f"postgresql://{settings.DB_USER}:{settings.DB_PASSWORD}@{settings.DB_HOST}:{settings.DB_PORT}/{settings.DB_NAME}"
+Base.metadata.create_all(bind=engine, checkfirst=True)
 
-engine = create_engine(DATABASE_URL)
-
-SessionLocal = sessionmaker(autocommit=False, autoflush=False, bind=engine)
-
-Base = declarative_base()
-
-def get_db():
-    db = SessionLocal()
-    try:
-        yield db
-    finally:
-        db.close
+app.include_router(router)
 
 if __name__ == "__main__":
     import uvicorn
-    uvicorn.run(app, host="0.0.0.0", port=8000)
+    uvicorn.run(app, host="127.0.0.1", port=8000)
