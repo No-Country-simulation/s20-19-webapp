@@ -19,9 +19,8 @@ class ProductRepository:
         products = self.session.query(Product).all()
         return [ProductOutput(id=product.id, name=product.name, brand=product.brand, type=product.type) for product in products]
     
-    def get_by_id(self, id: str) -> ProductOutput:
-        product = self.session.query(Product).filter(Product.id==id).first()
-        return ProductOutput(id=product.id, name=product.name, brand=product.brand, type=product.type)
+    def get_by_id(self, id: str) -> Product:
+        return self.session.query(Product).filter(Product.id==id).first()
     
     def update(self, product: Type[Product], data: ProductInput) -> ProductInput:
         product.name = data.name
