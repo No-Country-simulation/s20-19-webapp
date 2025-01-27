@@ -17,6 +17,7 @@ class Publication(Base):
     user_id = Column(Integer, ForeignKey('users.id'))
     user = relationship('User', back_populates='publications')
     comments = relationship('Comment', back_populates='publication')
-    #product_id = Column(String, ForeignKey('products.id'))
+    product_id = Column(Integer, ForeignKey('products.id'))
+    product = relationship('Product', back_populates='publications')
     shop_id = Column(Integer, ForeignKey('shops.id'))
     shops = relationship('Shop', back_populates='publications')

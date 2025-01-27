@@ -1,4 +1,5 @@
 from sqlalchemy import Column, String, Integer
+from sqlalchemy.orm import relationship
 from utils.config import Base
 
 class Product(Base):
@@ -8,4 +9,4 @@ class Product(Base):
     name = Column(String, nullable=False)
     brand = Column(String, nullable=False)
     type = Column(String, nullable=False)
-    #publication: List[Optional[Publication]] = relationship('Publication', back_populates='products', nullable=True)
+    publications = relationship('Publication', back_populates='product')
