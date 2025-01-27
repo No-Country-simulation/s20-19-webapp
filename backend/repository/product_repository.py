@@ -20,7 +20,7 @@ class ProductRepository:
         return [ProductOutput(id=product.id, name=product.name, brand=product.brand, type=product.type) for product in products]
     
     def get_by_id(self, id: str) -> ProductOutput:
-        product = self.session.query(Product).filter_by(Product.id==id).first()
+        product = self.session.query(Product).filter(Product.id==id).first()
         return ProductOutput(id=product.id, name=product.name, brand=product.brand, type=product.type)
     
     def update(self, product: Type[Product], data: ProductInput) -> ProductInput:
