@@ -1,9 +1,9 @@
-'use client';
+"use client";
 
-import { Card, CardHeader } from '@/components/ui/card';
-import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
-import { Input } from '@/components/ui/input';
-import { User } from 'lucide-react';
+import { Card, CardHeader } from "@/components/ui/card";
+import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import { Button } from "@/components/ui/button";
+import { User } from "lucide-react";
 
 export function SharePromotion() {
   return (
@@ -13,7 +13,9 @@ export function SharePromotion() {
         <div className="flex items-center space-x-3 w-full">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback><User className="h-4 w-4" /></AvatarFallback>
+            <AvatarFallback>
+              <User className="h-4 w-4" />
+            </AvatarFallback>
           </Avatar>
           <Input
             placeholder="Crear publicación"

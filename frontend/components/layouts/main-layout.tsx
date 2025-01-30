@@ -23,7 +23,7 @@ export function MainLayout({ children }: { children: React.ReactNode }) {
         </header>
 
         {/* Contenido dinámico */}
-        <main className="p-8">{children}</main>
+        <main className="p-8 bg-slate-100">{children}</main>
       </div>
     </div>
   );
