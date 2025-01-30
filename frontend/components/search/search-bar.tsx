@@ -15,14 +15,18 @@ export const SearchBar = () => {
   };
 
   return (
-    <form onSubmit={handleSubmit(onSubmit)} className="flex items-center border rounded-lg shadow-sm p-2 w-full ">
-      <Search className="text-gray-500 mr-2" />
-      <Input
-        type="text"
-        placeholder="Buscar"
-        {...register("query")}
-        className="flex-1 border-none focus:ring-0 focus:outline-none"
-      />
-    </form>
+    <form 
+  onSubmit={handleSubmit(onSubmit)} 
+  className="flex items-center border rounded-lg shadow-sm p-2 w-[1190px] h-[42px]"
+>
+  <Search className="text-gray-500 mr-2" />
+  <Input
+    type="text"
+    placeholder="Buscar"
+    {...register("query")}
+    className="flex-1 border-none focus:ring-0 focus:outline-none"
+  />
+</form>
+
   );
 };
