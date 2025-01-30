@@ -33,7 +33,7 @@ export function PromotionCard({
   comments,
 }: PromotionCardProps) {
   return (
-    <div className="max-w-4xl mx-auto bg-white rounded-lg shadow">
+    <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow">
       {/* Header */}
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -50,6 +50,7 @@ export function PromotionCard({
           <span className="text-sm bg-orange-50 p-1 rounded-sm">Panadería</span>
           <span className="text-sm bg-orange-50 p-1 rounded-sm">Walmart</span>
           <span className="text-sm bg-orange-50 p-1 rounded-sm">Precio final: $20</span>
+          <span className="text-sm bg-orange-50 p-1 rounded-sm">%80</span>
           <Badge variant="secondary" className="bg-orange-500 text-white hover:bg-orange-600 rounded-sm py-1 px-2">
             <Flame className="h-4 w-4" />
           </Badge>
