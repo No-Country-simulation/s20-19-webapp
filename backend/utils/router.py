@@ -1,5 +1,5 @@
 from fastapi import APIRouter
-from api import product_routes
+from api import product_routes, publication_routes
 
 
 router = APIRouter(
@@ -7,5 +7,6 @@ router = APIRouter(
 )
 
 router.include_router(product_routes.router)
+router.include_router(publication_routes.router)
 
 __all__ = ['router']
