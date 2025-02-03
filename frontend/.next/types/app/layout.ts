@@ -1,4 +1,4 @@
-// File: C:\Users\OXXO\Desktop\s20-19-webapp\frontend\app\layout.tsx
+// File: /home/kvus/Desktop/ahorraYa/s20-19-webapp/frontend/app/layout.tsx
 import * as entry from '../../../app/layout.js'
 import type { ResolvingMetadata } from 'next/dist/lib/metadata/types/metadata-interface.js'
 

@@ -7,25 +7,25 @@ import { User } from "lucide-react";
 
 export function SharePromotion() {
   return (
-    <div className="flex justify-center w-full">
-    <Card className="w-[917px] bg-white border-none shadow-none p-0">
-      <CardHeader className="p-0">
-        <div className="flex items-center space-x-3 w-full">
+    <Card className=" border-0 bg-transparent w-full flex max-w-4xl justify-center">
+
+        <div className="flex items-center w-full max-w-4xl bg-white rounded-lg px-4 py-3 shadow-sm">
+          {/* Avatar del usuario */}
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>
               <User className="h-4 w-4" />
             </AvatarFallback>
           </Avatar>
-          <Input
-            placeholder="Crear publicación"
-            className="w-full h-[42px] bg-white border-gray-300 rounded-lg"
-          />
-        </div>
-      </CardHeader>
-    </Card>
-  </div>
-  
 
+          {/* Botón para abrir el modal */}
+          <Button
+            className="flex-1 text-gray-400 font-normal bg-transparent hover:bg-gray-100 border-0 shadow-none text-left"
+            variant="ghost"
+          >
+            Crear publicación
+          </Button>
+        </div>
+    </Card> 
   );
 }
