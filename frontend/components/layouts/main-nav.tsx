@@ -35,7 +35,7 @@ export function MainNav() {
       <p className=' w-10'>Jhon Doe</p>
       <Avatar>
         <AvatarImage src="https://github.com/shadcn.png" />
-        <AvatarFallback><User className="h-40 w-4" /></AvatarFallback>
+        <AvatarFallback><User className="h-4 w-4" /></AvatarFallback>
       </Avatar>   
       <ThemeToggle />    
     </div>
