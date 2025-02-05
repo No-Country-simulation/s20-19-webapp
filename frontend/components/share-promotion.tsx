@@ -5,7 +5,7 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 
-export function SharePromotion() {
+export function SharePromotion({ onOpen }: { onOpen: () => void }) {
   return (
     <Card className=" border-0 bg-transparent w-full flex max-w-4xl justify-center">
 
@@ -22,6 +22,7 @@ export function SharePromotion() {
           <Button
             className="flex-1 text-gray-400 font-normal bg-transparent hover:bg-gray-100 border-0 shadow-none text-left"
             variant="ghost"
+            onClick={onOpen}
           >
             Crear publicación
           </Button>
