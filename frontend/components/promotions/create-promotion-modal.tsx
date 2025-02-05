@@ -5,15 +5,14 @@ import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Button } from "@/components/ui/button";
-import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-import { Switch } from "@/components/ui/switch";
+import { Tooltip, TooltipProvider, TooltipTrigger, TooltipContent } from "@/components/ui/tooltip";
 import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
-import { PlusCircle, Percent, Store, Search } from "lucide-react";
+import { Info, Store, Search } from "lucide-react";
 import { ImageUploader } from "./image-uploader";
+import Image from "next/image"
 
 export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
 
-  const [includeInPublication, setIncludeInPublication] = useState(false);
   const [step, setStep] = useState("category"); // Mantiene la pestaña activa
   const [category, setCategory] = useState("");
   const [previousPrice, setPreviousPrice] = useState("");
@@ -87,7 +86,9 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
             <TooltipProvider>
               <Tooltip>
                 <TooltipTrigger asChild>
-                  <Switch checked={includeInPublication} onCheckedChange={setIncludeInPublication} />
+                  <div className="flex items-center gap-2">
+                    <Info className="w-4 h-4 text-gray-500" />
+                  </div>
                 </TooltipTrigger>
                 <TooltipContent side="right" align="center">
                   Completa la información para publicar
@@ -98,9 +99,9 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
           </div>
         </div>
 
-        {/* 📌 Tabs para la navegación entre secciones */}
+        {/* Tabs para la navegación entre secciones */}
         <Tabs value={step} onValueChange={setStep} className="w-full">
-          <TabsList className="flex gap-2 bg-gray-100 p-1 rounded-md">
+          <TabsList className="flex gap-2 bg-gray-100 p-1 rounded-md float-left">
             <TabsTrigger 
               value="category" 
               className={`px-4 py-2 rounded-md transition-all ${step === "category" ? "bg-green-500 text-white shadow-md" : "bg-transparent text-gray-600 hover:bg-gray-200"}`}
@@ -123,10 +124,10 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
             </TabsTrigger>
           </TabsList>
 
-          {/* 📌 Sección Categoría */}
+          {/* Sección Categoría */}
           <TabsContent value="category">
-            <div className="mt-4 p-4 border rounded-md">
-              <p className="text-sm text-gray-600 mb-2">Selecciona una categoría de oferta para poder publicar</p>
+            <div className="mt-12 p-4 border rounded-md">
+              <p className="text-sm text-gray-400 mb-2">Selecciona una categoría de oferta para poder publicar</p>
               <select 
                 className="w-full p-2 border rounded-md"
                 value={category}
@@ -143,35 +144,51 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
             </div>
           </TabsContent>
 
-          {/* 📌 Sección Precio */}
+          {/* Sección Precio */}
           <TabsContent value="price">
-            <div className="mt-4 p-4 border rounded-md">
-              <p className="text-sm text-gray-600 mb-2">Incluye por lo menos el precio actual. Si proporcionas también el precio anterior, se calculará el descuento.</p>
-              <Input 
-                placeholder="Precio anterior" 
-                value={previousPrice} 
-                onChange={(e) => handlePriceChange(e.target.value, currentPrice)} 
-                className="mb-2"
-              />
-              <Input 
-                placeholder="Precio actual" 
-                value={currentPrice} 
-                onChange={(e) => {
-                  handlePriceChange(previousPrice, e.target.value);
-                  validateForm();
-                }} 
-              />
-              {discount !== null && (
-                <div className="mt-3 bg-orange-100 text-orange-600 px-4 py-2 rounded-md flex items-center gap-2">
-                  <Percent className="w-5 h-5" /> {discount}% de descuento
+            <div className="mt-12 p-4 border rounded-md">
+              <p className="text-sm text-gray-600 mb-2">
+                Incluye por lo menos el precio actual. Si proporcionas también el precio anterior, se calculará el descuento.
+              </p>
+              {/* Campo de Precio Anterior */}
+              <div className="mb-3">
+                <label className="text-sm text-gray-700 font-medium mb-1 block">Precio anterior</label>
+                <Input
+                  type="number"
+                  placeholder="$"
+                  value={previousPrice}
+                  onChange={(e) => handlePriceChange(e.target.value, currentPrice)}
+                  className="bg-white border-gray-300 rounded-md shadow-sm"
+                />
+              </div>
+
+              {/* Campo de Precio Actual */}
+              <div className="mb-3">
+                <label className="text-sm text-gray-700 font-medium mb-1 block">Precio actual</label>
+                <Input
+                  type="number"
+                  placeholder="$"
+                  value={currentPrice}
+                  onChange={(e) => {
+                    handlePriceChange(previousPrice, e.target.value);
+                    validateForm();
+                  }}
+                  className="bg-white border-gray-300 rounded-md shadow-sm"
+                />
+              </div>
+
+              {/* Muestra el Descuento Solo Si Se Ingresan Ambos Precios */}
+              
+                <div className="mt-3 bg-orange-100 text-gray-800 px-4 py-3 rounded-md flex items-center justify-center gap-2 text-lg font-semibold">
+                <Image src="/icons/onsale.svg" alt="Descuento" width={15} height={15} /> 
+                {discount}%
                 </div>
-              )}
             </div>
           </TabsContent>
 
-          {/* 📌 Sección Supermercado */}
+          {/* Sección Supermercado */}
           <TabsContent value="supermarket">
-            <div className="mt-4 p-4 border rounded-md">
+            <div className="mt-12 p-4 border rounded-md">
               <p className="text-sm text-gray-600 mb-2">Selecciona el supermercado donde encontraste la oferta</p>
 
               {/* Campo de Búsqueda */}
@@ -185,7 +202,7 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
                 <Search className="absolute left-3 top-3 text-gray-500 w-5 h-5" />
               </div>
 
-              {/* 📌 Resultados de la Búsqueda */}
+              {/* Resultados de la Búsqueda */}
               {supermarketQuery && (
                 <div className="mt-2 border rounded-md bg-white shadow-md max-h-40 overflow-y-auto">
                   {filteredSupermarkets.length > 0 ? (
@@ -216,7 +233,7 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
           </TabsContent>
         </Tabs>
 
-        {/* 📌 Botones */}
+        {/* Botones */}
         <DialogFooter className="flex justify-end gap-2">
           <Button variant="outline" onClick={onClose}>Cancelar</Button>
           <Button disabled={!isPublishEnabled} className={`${!isPublishEnabled ? "bg-gray-400 cursor-not-allowed" : ""}`}>
