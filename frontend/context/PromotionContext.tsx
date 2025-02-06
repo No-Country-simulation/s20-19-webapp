@@ -40,7 +40,12 @@ export function PromotionProvider({ children }: { children: React.ReactNode }) {
           previousPrice: "25",
           currentPrice: "20",
           discount: 20,
-          supermarket: { id: 1, name: "Walmart", logo:"https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=100", address: "123 Market Street, Downtown" },
+          supermarket: {
+            id: 1,
+            name: "Walmart",
+            logo: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=100",
+            address: "123 Market Street, Downtown"
+          },
           location: "123 Market Street, Downtown",
           imageUrl: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=2832",
           likes: 24,
@@ -61,6 +66,117 @@ export function PromotionProvider({ children }: { children: React.ReactNode }) {
             },
           ],
         },
+        {
+          id: "2",
+          title: "Leche deslactosada",
+          description: "Oferta especial en leche deslactosada en Walmart",
+          category: "Lácteos",
+          previousPrice: "35",
+          currentPrice: "28",
+          discount: 20,
+          supermarket: {
+            id: 1,
+            name: "Walmart",
+            logo: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=100",
+            address: "456 Main Street, Uptown"
+          },
+          location: "456 Main Street, Uptown",
+          imageUrl: "https://images.unsplash.com/photo-1563636619-e9143da7973b?auto=format&fit=crop&q=80&w=2832",
+          likes: 15,
+          dislikes: 1,
+          reports: 0,
+          comments: [
+            {
+              id: "c3",
+              user: { name: "Carlos López", avatar: "/avatars/carlos.png" },
+              text: "Justo lo que necesitaba, gracias!",
+              date: "Hace 15 minutos",
+            }
+          ],
+        },
+        {
+          id: "3",
+          title: "Manzanas Fuji",
+          description: "Descuento en manzanas Fuji frescas en Walmart",
+          category: "Frutas y Verduras",
+          previousPrice: "50",
+          currentPrice: "38",
+          discount: 24,
+          supermarket: {
+            id: 1,
+            name: "Walmart",
+            logo: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=100",
+            address: "789 Green Avenue, Suburbs"
+          },
+          location: "789 Green Avenue, Suburbs",
+          imageUrl: "https://res.cloudinary.com/dworm9bnx/image/upload/v1738868750/xskzvwmd2nrgwpunwswo.jpg",
+          likes: 30,
+          dislikes: 0,
+          reports: 0,
+          comments: [],
+        },
+        {
+          id: "4",
+          title: "Pechuga de Pollo",
+          description: "Oferta en pechuga de pollo deshuesada",
+          category: "Carnes",
+          previousPrice: "80",
+          currentPrice: "65",
+          discount: 19,
+          supermarket: {
+            id: 1,
+            name: "Walmart",
+            logo: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=100",
+            address: "101 Food Court, Central"
+          },
+          location: "101 Food Court, Central",
+          imageUrl: "https://res.cloudinary.com/dworm9bnx/image/upload/v1738868588/rvfykquocoriyf7epoes.jpg",
+          likes: 40,
+          dislikes: 3,
+          reports: 1,
+          comments: [
+            {
+              id: "c4",
+              user: { name: "Ana Martínez", avatar: "/avatars/ana.png" },
+              text: "Se ve muy bien, compraré algunas.",
+              date: "Hace 30 minutos",
+            },
+            {
+              id: "c5",
+              user: { name: "Luis Gómez", avatar: "/avatars/luis.png" },
+              text: "El precio está excelente!",
+              date: "Hace 45 minutos",
+            }
+          ],
+        },
+        {
+          id: "5",
+          title: "Aceite de oliva extra virgen",
+          description: "Gran oferta en aceite de oliva extra virgen",
+          category: "Abarrotes",
+          previousPrice: "120",
+          currentPrice: "95",
+          discount: 21,
+          supermarket: {
+            id: 1,
+            name: "Walmart",
+            logo: "https://images.unsplash.com/photo-1608198093002-ad4e005484ec?auto=format&fit=crop&q=80&w=100",
+            address: "202 Gourmet Street, Downtown"
+          },
+          location: "202 Gourmet Street, Downtown",
+          imageUrl: "https://res.cloudinary.com/dworm9bnx/image/upload/v1738868446/g3w0fbi13astghdgldgo.webp",
+          likes: 50,
+          dislikes: 5,
+          reports: 2,
+          comments: [
+            {
+              id: "c6",
+              user: { name: "Marta Ruiz", avatar: "/avatars/marta.png" },
+              text: "Excelente calidad, lo recomiendo.",
+              date: "Hace 1 hora",
+            }
+          ],
+        }
       ]);
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [editingPromotion, setEditingPromotion] = useState<Promotion | null>(null);
