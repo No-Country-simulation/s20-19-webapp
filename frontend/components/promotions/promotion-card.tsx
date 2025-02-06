@@ -1,7 +1,7 @@
 'use client';
 
 import Image from "next/image"
-import { MessageSquare, Share2, ThumbsUp, ThumbsDown, User, MapPin, Send, EllipsisVertical, Flame} from "lucide-react"
+import { MessageSquare, Share2, ThumbsUp, ThumbsDown, User, MapPin, Send, EllipsisVertical, Flame } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
@@ -34,9 +34,9 @@ export function PromotionCard({
   comments,
 }: PromotionCardProps) {
   return (
-    <div className=" mx-auto bg-white rounded-lg shadow">
+    <div className="mx-auto bg-[hsl(var(--card))] text-[hsl(var(--foreground))] rounded-lg shadow-md border border-[hsl(var(--border))]">
       {/* Header */}
-      <div className="p-4 flex items-center justify-between">
+      <div className="p-4 flex items-center justify-between bg-[hsl(var(--muted))] rounded-t-lg">
         <div className="flex items-center gap-3">
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
@@ -44,14 +44,14 @@ export function PromotionCard({
           </Avatar>
           <div>
             <div className="font-medium">John Doe</div>
-            <div className="text-sm text-muted-foreground">Hace 2 minutos</div>
+            <div className="text-sm text-[hsl(var(--muted-foreground))]">Hace 2 minutos</div>
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <span className="text-sm bg-orange-50 p-1 rounded-sm">Panadería</span>
-          <span className="text-sm bg-orange-50 p-1 rounded-sm">Walmart</span>
-          <span className="text-sm bg-orange-50 p-1 rounded-sm">Precio final: $20</span>
-          <span className="text-sm bg-orange-50 p-1 rounded-sm flex gap-1">
+          <span className="text-sm bg-[hsl(var(--accent))] p-1 rounded-sm">Panadería</span>
+          <span className="text-sm bg-[hsl(var(--accent))] p-1 rounded-sm">Walmart</span>
+          <span className="text-sm bg-[hsl(var(--accent))] p-1 rounded-sm">Precio final: $20</span>
+          <span className="text-sm bg-[hsl(var(--accent))] p-1 rounded-sm flex gap-1">
             <Image src="/icons/onsale.svg" alt="Descuento" width={15} height={15} />
             %80
           </span>
@@ -62,9 +62,7 @@ export function PromotionCard({
                   <Flame className="h-4 w-4" />
                 </Label>
               </TooltipTrigger>
-              <TooltipContent>
-                Oferta destacada
-              </TooltipContent>
+              <TooltipContent>Oferta destacada</TooltipContent>
             </Tooltip>
           </TooltipProvider>
           <Button variant="ghost" size="icon" className="text-green-600 border-solid border-2 border-green-600 h-6 w-6">
@@ -75,48 +73,48 @@ export function PromotionCard({
 
       {/* Content */}
       <div className="px-4 ml-11">
-        <h2 className="text-xl font-semibold">Pan de barra</h2>
-        <p className="text-slate-700">Encontré esta super promoción en Walmart</p>
-        <p className="text-sm text-muted-foreground flex mt-1">
-        <MapPin className="w-5 h-5 mr-1"/>
-        CP 34582, Av. Ignacio Sandoval 1784, Col. Villahermosa, Colima, Colima
+        <h2 className="text-xl font-semibold">{title}</h2>
+        <p className="text-[hsl(var(--muted-foreground))]">{description}</p>
+        <p className="text-sm text-[hsl(var(--muted-foreground))] flex mt-1">
+          <MapPin className="w-5 h-5 mr-1"/>
+          {location}
         </p>
       </div>
 
       {/* Image */}
       <div className="mt-4 relative h-[300px] rounded-md overflow-hidden m-3">
         <Image
-          src="https://res.cloudinary.com/dworm9bnx/image/upload/v1738203133/pan_xplxdn.png"
-          alt="Sara Lee bread promotion"
+          src={imageUrl}
+          alt={title}
           fill
           className="object-cover"
         />
       </div>
 
       {/* Interactions */}
-      <div className="p-4 flex items-center justify-between border-t">
+      <div className="p-4 flex items-center justify-between border-t border-[hsl(var(--border))]">
         <div className="flex gap-6">
-          <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
+          <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
             <ThumbsUp className="w-5 h-5" />
-            <span>24</span>
+            <span>{likes}</span>
           </button>
-          <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
+          <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
             <ThumbsDown />
             <span>24</span>
           </button>
-          <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
+          <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
             <Share2 className="w-5 h-5" />
           </button>
         </div>
-        <button className="flex items-center gap-2 text-muted-foreground hover:text-foreground">
-            <MessageSquare className="w-5 h-5" />
-            <span>8 comentarios</span>
+        <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
+          <MessageSquare className="w-5 h-5" />
+          <span>{comments} comentarios</span>
         </button>
       </div>
 
       {/* Comments */}
-      <div className="p-4 border-t">
-        <Button variant="link" className="text-muted-foreground text-green-600">
+      <div className="p-4 border-t border-[hsl(var(--border))]">
+        <Button variant="link" className="text-[hsl(var(--muted-foreground))] text-green-600">
           Ver más comentarios
         </Button>
         <div className="flex gap-3 mb-4">
@@ -124,9 +122,9 @@ export function PromotionCard({
             <AvatarImage src="/placeholder.svg" />
             <AvatarFallback>JS</AvatarFallback>
           </Avatar>
-          <div className="bg-slate-100 p-2 rounded-md">
+          <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
             <div className="font-medium">Jane Smith</div>
-            <p className="text-muted-foreground">Great deal! I just got some yesterday.</p>
+            <p className="text-[hsl(var(--muted-foreground))]">Great deal! I just got some yesterday.</p>
           </div>
         </div>
 
