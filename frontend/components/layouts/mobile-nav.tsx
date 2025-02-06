@@ -3,7 +3,6 @@
 import * as React from 'react';
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { cn } from '@/lib/utils';
 import { Button } from '@/components/ui/button';
 import { ScrollArea } from '@/components/ui/scroll-area';
 import { Sheet, SheetContent, SheetTrigger } from '@/components/ui/sheet';
@@ -34,32 +33,32 @@ export function MobileNav() {
 
   return (
     <Sheet open={open} onOpenChange={setOpen}>
+      {/* MobileNav solo aparece en pantallas pequeñas */}
       <div className="flex md:hidden flex-1 items-center">
-        <SheetTrigger asChild>
-          <Button
-            variant="ghost"
-            className="mr-2 px-0 text-base hover:bg-transparent focus-visible:bg-transparent focus-visible:ring-0 focus-visible:ring-offset-0"
-          >
-            <Menu className="h-6 w-6" />
-            <span className="sr-only">Toggle Menu</span>
-          </Button>
-        </SheetTrigger>
-        <Link href="/" className="flex items-center space-x-2">
-          <Tag className="h-6 w-6" />
-          <span className="font-bold">Ahorra YA</span>
-        </Link>
+      <SheetTrigger asChild>
+    <Button variant="ghost" className="p-0 flex items-center gap-2">
+      <Menu className="h-6 w-6 text-white" />
+      <span className="sr-only">Toggle Menu</span>
+      <img src="/images/AYA-logo.webp" alt="Ahorra YA!" className="w-10 h-auto object-contain" />
+    </Button>
+
+</SheetTrigger>
+
         <div className="ml-auto">
           <ThemeToggle />
         </div>
       </div>
-      <SheetContent side="left" className="pr-0">
+      <SheetContent side="left" className="pr-0 bg-green-700 text-white">
         <Link
           href="/"
           className="flex items-center space-x-2"
           onClick={() => setOpen(false)}
         >
-          <Tag className="h-6 w-6" />
-          <span className="font-bold">Ahorra YA</span>
+          <img 
+            src="/images/AYA2.webp" 
+            alt="Ahorra YA!" 
+            className="w-40 h-auto object-contain"
+          />
         </Link>
         <ScrollArea className="my-4 h-[calc(100vh-8rem)] pb-10">
           <div className="flex flex-col space-y-3">
@@ -68,12 +67,11 @@ export function MobileNav() {
                 key={item.href}
                 href={item.href}
                 onClick={() => setOpen(false)}
-                className={cn(
-                  'flex items-center gap-2 px-2 py-1 text-sm transition-colors hover:text-foreground/80',
-                  pathname === item.href ? 'text-foreground' : 'text-foreground/60'
-                )}
+                className={`flex items-center gap-2 px-4 py-2 text-lg rounded-lg transition-all duration-300 hover:bg-green-900 ${
+                  pathname === item.href ? 'bg-green-900' : 'bg-transparent'
+                }`}
               >
-                <item.icon className="h-4 w-4" />
+                <item.icon className="h-6 w-6 text-white" />
                 {item.title}
               </Link>
             ))}
