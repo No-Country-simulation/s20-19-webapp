@@ -25,11 +25,11 @@ export interface Promotion {
   discount: number;
   supermarket: Supermarket;
   imageUrl: string;
-  location: string;
-  likes: number;
-  dislikes: number;
-  reports: number;
-  comments: Comment[];
+  location?: string;
+  likes?: number;
+  dislikes?: number;
+  reports?: number;
+  comments?: Comment[];
 }
 
 export interface Category {

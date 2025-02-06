@@ -135,51 +135,51 @@ export function PromotionCard({ promotion }: PromotionCardProps)  {
           </button>
         </div>
         <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
-          <MessageSquare className="w-5 h-5" />
-          <span>{promotion.comments.length} comentarios</span>
-        </button>
+  <MessageSquare className="w-5 h-5" />
+  <span>{promotion.comments?.length ?? 0} comentarios</span>
+</button>
+</div>
+
+{/* Comentarios */}
+<div className="p-4 border-t border-[hsl(var(--border))]">
+  {(promotion.comments ?? []).length > 0 && (
+    <div>
+      <div className="flex gap-3 mb-4">
+        <Avatar className="w-8 h-8">
+          <AvatarImage src={promotion.comments?.[0]?.user?.avatar ?? "/placeholder.svg"} />
+          <AvatarFallback>{promotion.comments?.[0]?.user?.name?.charAt(0) ?? "U"}</AvatarFallback>
+        </Avatar>
+        <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
+          <div className="font-medium">{promotion.comments?.[0]?.user?.name ?? "Usuario desconocido"}</div>
+          <p className="text-[hsl(var(--muted-foreground))]">{promotion.comments?.[0]?.text ?? "Comentario no disponible"}</p>
+          <p className="text-xs text-[hsl(var(--muted-foreground))]">{promotion.comments?.[0]?.date ?? "Fecha desconocida"}</p>
+        </div>
       </div>
 
-      {/* Comentarios */}
-      <div className="p-4 border-t border-[hsl(var(--border))]">
-        {promotion.comments.length > 0 && (
-          <div>
-            <div className="flex gap-3 mb-4">
-              <Avatar className="w-8 h-8">
-                <AvatarImage src={promotion.comments[0].user.avatar} />
-                <AvatarFallback>{promotion.comments[0].user.name.charAt(0)}</AvatarFallback>
-              </Avatar>
-              <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
-                <div className="font-medium">{promotion.comments[0].user.name}</div>
-                <p className="text-[hsl(var(--muted-foreground))]">{promotion.comments[0].text}</p>
-                <p className="text-xs text-[hsl(var(--muted-foreground))]">{promotion.comments[0].date}</p>
-              </div>
+      {(promotion.comments ?? []).length > 1 && !showAllComments && (
+        <Button
+          variant="link"
+          className="text-[hsl(var(--muted-foreground))] text-green-600"
+          onClick={() => setShowAllComments(true)}
+        >
+          Ver más comentarios
+        </Button>
+      )}
+
+      {showAllComments &&
+        (promotion.comments?.slice(1) ?? []).map((comment) => (
+          <div key={comment.id} className="flex gap-3 mb-4">
+            <Avatar className="w-8 h-8">
+              <AvatarImage src={comment.user?.avatar ?? "/placeholder.svg"} />
+              <AvatarFallback>{comment.user?.name?.charAt(0) ?? "U"}</AvatarFallback>
+            </Avatar>
+            <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
+              <div className="font-medium">{comment.user?.name ?? "Usuario desconocido"}</div>
+              <p className="text-[hsl(var(--muted-foreground))]">{comment.text ?? "Comentario no disponible"}</p>
+              <p className="text-xs text-[hsl(var(--muted-foreground))]">{comment.date ?? "Fecha desconocida"}</p>
             </div>
-
-            {promotion.comments.length > 1 && !showAllComments && (
-              <Button
-                variant="link"
-                className="text-[hsl(var(--muted-foreground))] text-green-600"
-                onClick={() => setShowAllComments(true)}
-              >
-                Ver más comentarios
-              </Button>
-            )}
-
-            {showAllComments &&
-              promotion.comments.slice(1).map((comment) => (
-                <div key={comment.id} className="flex gap-3 mb-4">
-                  <Avatar className="w-8 h-8">
-                    <AvatarImage src={comment.user.avatar} />
-                    <AvatarFallback>{comment.user.name.charAt(0)}</AvatarFallback>
-                  </Avatar>
-                  <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
-                    <div className="font-medium">{comment.user.name}</div>
-                    <p className="text-[hsl(var(--muted-foreground))]">{comment.text}</p>
-                    <p className="text-xs text-[hsl(var(--muted-foreground))]">{comment.date}</p>
-                  </div>
-                </div>
-              ))}
+          </div>
+        ))}
           </div>
         )}
 

@@ -12,17 +12,9 @@ import { ImageUploader } from "./image-uploader";
 import Image from "next/image"
 import { useEffect } from "react";
 import { usePromotionContext } from "@/context/PromotionContext";
+import { supermarkets } from "@/data/supermarkets";
+import { Supermarket } from "@/types";
 
-interface Promotion {
-  id: string;
-  title: string;
-  description: string;
-  imageUrl: string;
-  previousPrice: string;
-  currentPrice: string;
-  category: string;
-  supermarket: string;
-}
 
 export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void })  {
 
@@ -33,10 +25,10 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
   const [category, setCategory] = useState("");
   const [previousPrice, setPreviousPrice] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
-  const [supermarket, setSupermarket] = useState("");
+  const [supermarket, setSupermarket] = useState<Supermarket | null>(null);
   const [imageUrl, setImageUrl] = useState("");
 
-  const [selectedSupermarket, setSelectedSupermarket] = useState("");
+  const [selectedSupermarket, setSelectedSupermarket] = useState<number | null>(null);
 
   const [step, setStep] = useState("category"); // Mantiene la pestaña activa
   const [supermarketQuery, setSupermarketQuery] = useState("");
@@ -44,6 +36,7 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
   const [discount, setDiscount] = useState<number | null>(null);
   
   
+  // Cargar datos si se está editando una publicación
   useEffect(() => {
     if (editingPromotion) {
       setTitle(editingPromotion.title);
@@ -51,12 +44,42 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
       setCategory(editingPromotion.category);
       setPreviousPrice(editingPromotion.previousPrice);
       setCurrentPrice(editingPromotion.currentPrice);
-      setSupermarket(editingPromotion.supermarket);
       setImageUrl(editingPromotion.imageUrl);
+
+      // Buscar el supermercado basado en su ID
+      const foundSupermarket = supermarkets.find(s => s.id === editingPromotion.supermarket.id) || null;
+      setSupermarket(foundSupermarket);
+      setSelectedSupermarket(foundSupermarket ? foundSupermarket.id : null);
+    } else {
+      // Limpiar valores si es una nueva publicación
+      setTitle("");
+      setDescription("");
+      setCategory("");
+      setPreviousPrice("");
+      setCurrentPrice("");
+      setImageUrl("");
+      setSupermarket(null);
+      setSelectedSupermarket(null);
     }
   }, [editingPromotion]);
 
-  const handleSubmit = () => {
+  // Manejar la selección del supermercado correctamente
+  const handleSupermarketSelection = (id: number) => {
+    const foundSupermarket = supermarkets.find((s) => s.id === id) || null;
+    if (foundSupermarket) {
+      setSupermarket(foundSupermarket); // Se guarda el objeto completo
+      setSelectedSupermarket(foundSupermarket.id);
+      setSupermarketQuery(foundSupermarket.name);
+    }
+  };
+
+   // Guardar la publicación en el contexto
+   const handleSubmit = () => {
+    if (!title || !description || !category || !currentPrice) {
+      alert("Por favor completa todos los campos.");
+      return;
+    }
+  
     const newPromotion = {
       id: editingPromotion ? editingPromotion.id : Date.now().toString(),
       title,
@@ -64,25 +87,20 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
       category,
       previousPrice,
       currentPrice,
-      discount: Math.round(((parseFloat(previousPrice) - parseFloat(currentPrice)) / parseFloat(previousPrice)) * 100),
+      discount: discount || 0,
       supermarket,
       imageUrl,
     };
-
+  
     if (editingPromotion) {
       editPromotion(newPromotion);
     } else {
       addPromotion(newPromotion);
     }
-
+  
+    // Cerrar modal después de guardar
     onClose();
   };
-
-  const supermarkets = [
-    { id: 1, name: "Walmart", address: "Tercer anillo periférico #321, 28976 Villa de Álvarez, México" },
-    { id: 2, name: "Walmart", address: "Calzada Galván #789, 21843 Colima, México" },
-    { id: 3, name: "Walmart", address: "Plaza Sendera, 222751 Villa de Álvarez, México" },
-  ];
 
   // Filtrar supermercados según la búsqueda
   const filteredSupermarkets = supermarkets.filter((s) =>
@@ -110,7 +128,7 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
 
   // Habilitar publicación cuando se completen todos los campos
   const validateForm = () => {
-    if (category && currentPrice && selectedSupermarket) {
+    if (title && description && category && currentPrice && supermarket && imageUrl) {
       setIsPublishEnabled(true);
     } else {
       setIsPublishEnabled(false);
@@ -275,7 +293,7 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
                       <button
                         key={s.id}
                         onClick={() => {
-                          setSelectedSupermarket(s.name);
+                          setSelectedSupermarket(s.id);
                           setSupermarketQuery(s.name);
                           setStep("supermarket"); // Mantiene la pestaña activa
                           setIsPublishEnabled(true); // Habilita el botón de publicar
@@ -307,9 +325,11 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
         >
             Cancelar
           </Button>
-          <Button disabled={!isPublishEnabled} 
-          onClick={onClose}
-          className={`${!isPublishEnabled ? "bg-[hsl(var(--green-700))]/80 dark:bg-[hsl(var(--green-900))]text-white cursor-not-allowed" : "bg-[hsl(var(--green-700))] dark:bg-[hsl(var(--green-900))]text-white hover:bg-[hsl(var(--green-900))]"}`}>
+          <Button 
+            disabled={!isPublishEnabled} 
+            onClick={handleSubmit} // ✅ Ahora ejecuta handleSubmit correctamente
+            className={`${!isPublishEnabled ? "bg-[hsl(var(--green-700))]/80 dark:bg-[hsl(var(--green-900))] text-white cursor-not-allowed" : "bg-[hsl(var(--green-700))] dark:bg-[hsl(var(--green-900))] text-white hover:bg-[hsl(var(--green-900))]"}`}
+          >
             {editingPromotion ? "Actualizar" : "Publicar"}
           </Button>
         </DialogFooter>
