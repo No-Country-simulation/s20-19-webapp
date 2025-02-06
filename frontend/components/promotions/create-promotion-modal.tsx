@@ -10,17 +10,73 @@ import { Tabs, TabsList, TabsTrigger, TabsContent } from "@/components/ui/tabs";
 import { Info, Store, Search } from "lucide-react";
 import { ImageUploader } from "./image-uploader";
 import Image from "next/image"
+import { useEffect } from "react";
+import { usePromotionContext } from "@/context/PromotionContext";
 
-export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void }) {
+interface Promotion {
+  id: string;
+  title: string;
+  description: string;
+  imageUrl: string;
+  previousPrice: string;
+  currentPrice: string;
+  category: string;
+  supermarket: string;
+}
 
-  const [step, setStep] = useState("category"); // Mantiene la pestaña activa
+export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onClose: () => void })  {
+
+  const { addPromotion, editPromotion, editingPromotion } = usePromotionContext();
+
+  const [title, setTitle] = useState("");
+  const [description, setDescription] = useState("");
   const [category, setCategory] = useState("");
   const [previousPrice, setPreviousPrice] = useState("");
   const [currentPrice, setCurrentPrice] = useState("");
-  const [discount, setDiscount] = useState<number | null>(null);
-  const [supermarketQuery, setSupermarketQuery] = useState("");
+  const [supermarket, setSupermarket] = useState("");
+  const [imageUrl, setImageUrl] = useState("");
+
   const [selectedSupermarket, setSelectedSupermarket] = useState("");
+
+  const [step, setStep] = useState("category"); // Mantiene la pestaña activa
+  const [supermarketQuery, setSupermarketQuery] = useState("");
   const [isPublishEnabled, setIsPublishEnabled] = useState(false);
+  const [discount, setDiscount] = useState<number | null>(null);
+  
+  
+  useEffect(() => {
+    if (editingPromotion) {
+      setTitle(editingPromotion.title);
+      setDescription(editingPromotion.description);
+      setCategory(editingPromotion.category);
+      setPreviousPrice(editingPromotion.previousPrice);
+      setCurrentPrice(editingPromotion.currentPrice);
+      setSupermarket(editingPromotion.supermarket);
+      setImageUrl(editingPromotion.imageUrl);
+    }
+  }, [editingPromotion]);
+
+  const handleSubmit = () => {
+    const newPromotion = {
+      id: editingPromotion ? editingPromotion.id : Date.now().toString(),
+      title,
+      description,
+      category,
+      previousPrice,
+      currentPrice,
+      discount: Math.round(((parseFloat(previousPrice) - parseFloat(currentPrice)) / parseFloat(previousPrice)) * 100),
+      supermarket,
+      imageUrl,
+    };
+
+    if (editingPromotion) {
+      editPromotion(newPromotion);
+    } else {
+      addPromotion(newPromotion);
+    }
+
+    onClose();
+  };
 
   const supermarkets = [
     { id: 1, name: "Walmart", address: "Tercer anillo periférico #321, 28976 Villa de Álvarez, México" },
@@ -64,24 +120,18 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
   return (
     <Dialog open={isOpen} onOpenChange={onClose}>
       <DialogContent className="max-w-2xl max-h-[80vh] overflow-y-auto">
-        {/* 📌 Encabezado */}
         <DialogHeader>
-          <DialogTitle className="text-lg font-semibold">Crear publicación</DialogTitle>
+          <DialogTitle className="text-lg font-semibold">
+            {editingPromotion ? "Editar publicación" : "Crear publicación"}
+          </DialogTitle>
         </DialogHeader>
 
-        {/* 📌 Primera sección del formulario */}
         <div className="space-y-4">
 
-          {/* Nombre del Producto */}
-          <Input placeholder="Nombre del producto" className="w-full" />
+        <Input value={title} onChange={(e) => setTitle(e.target.value)} placeholder="Nombre del producto" className="w-full" />
+          <Textarea value={description} onChange={(e) => setDescription(e.target.value)} placeholder="¿Qué descubriste?" className="w-full" />
+          <ImageUploader imageUrl={imageUrl} setImageUrl={setImageUrl} />
 
-          {/* Descripción */}
-          <Textarea placeholder="¿Qué descubriste?" className="w-full" />
-
-          {/* 📌 Agregar Foto */}
-          <ImageUploader/>
-
-          {/* 📌 Switch con Tooltip */}
           <div className="flex items-center gap-2">
             <TooltipProvider>
               <Tooltip>
@@ -104,20 +154,35 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
           <TabsList className="flex gap-2 bg-gray-100 p-1 rounded-md float-left">
             <TabsTrigger 
               value="category" 
-              className={`px-4 py-2 rounded-md transition-all ${step === "category" ? "bg-green-500 text-white shadow-md" : "bg-transparent text-gray-600 hover:bg-gray-200"}`}
-            >
+              className="px-4 py-2 rounded-md transition-all 
+                data-[state=active]:bg-[hsl(var(--green-700))] 
+                data-[state=active]:dark:bg-[hsl(var(--green-900))] 
+                data-[state=active]:text-white 
+                data-[state=active]:shadow-md 
+                bg-transparent text-[hsl(var(--green-700))] hover:bg-gray-200"
+                >
               Categoría
             </TabsTrigger>
             <TabsTrigger 
               value="price" 
-              className={`px-4 py-2 rounded-md transition-all ${step === "price" ? "bg-green-500 text-white shadow-md" : "bg-transparent text-gray-600 hover:bg-gray-200"}`}
+              className="px-4 py-2 rounded-md transition-all 
+                data-[state=active]:bg-[hsl(var(--green-700))] 
+                data-[state=active]:dark:bg-[hsl(var(--green-900))] 
+                data-[state=active]:text-white 
+                data-[state=active]:shadow-md 
+                bg-transparent text-[hsl(var(--green-700))] hover:bg-gray-200"
               disabled={!category}
             >
               Precio
             </TabsTrigger>
             <TabsTrigger 
               value="supermarket" 
-              className={`px-4 py-2 rounded-md transition-all ${step === "supermarket" ? "bg-green-500 text-white shadow-md" : "bg-transparent text-gray-600 hover:bg-gray-200"}`}
+              className="px-4 py-2 rounded-md transition-all 
+                data-[state=active]:bg-[hsl(var(--green-700))] 
+                data-[state=active]:dark:bg-[hsl(var(--green-900))] 
+                data-[state=active]:text-white 
+                data-[state=active]:shadow-md 
+                bg-transparent text-[hsl(var(--green-700))] hover:bg-gray-200"
               disabled={!currentPrice}
             >
               Supermercado
@@ -234,10 +299,18 @@ export function CreatePromotionModal({ isOpen, onClose }: { isOpen: boolean; onC
         </Tabs>
 
         {/* Botones */}
-        <DialogFooter className="flex justify-end gap-2">
-          <Button variant="outline" onClick={onClose}>Cancelar</Button>
-          <Button disabled={!isPublishEnabled} className={`${!isPublishEnabled ? "bg-gray-400 cursor-not-allowed" : ""}`}>
-            Publicar
+        <DialogFooter className="flex justify-end gap-2"> 
+        <Button
+          variant="outline"
+          onClick={onClose}
+          className="text-[hsl(var(--green-700))] dark:text-[hsl(var(--green-900))] border-[hsl(var(--green-700))] dark:border-[hsl(var(--green-900))]"
+        >
+            Cancelar
+          </Button>
+          <Button disabled={!isPublishEnabled} 
+          onClick={onClose}
+          className={`${!isPublishEnabled ? "bg-[hsl(var(--green-700))]/80 dark:bg-[hsl(var(--green-900))]text-white cursor-not-allowed" : "bg-[hsl(var(--green-700))] dark:bg-[hsl(var(--green-900))]text-white hover:bg-[hsl(var(--green-900))]"}`}>
+            {editingPromotion ? "Actualizar" : "Publicar"}
           </Button>
         </DialogFooter>
       </DialogContent>

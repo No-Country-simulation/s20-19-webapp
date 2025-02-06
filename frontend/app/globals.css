@@ -54,6 +54,7 @@
     --ring: 0 0% 3.9%;
 
     /* Colores específicos para la marca */
+    --green-600: 142 76% 46%; 
     --green-700: 142 76% 36%;
     --green-900: 152 72% 22%;
     --green-400: 152 65% 50%;
@@ -79,7 +80,7 @@
 
   .dark {
     /* Ajuste de colores en modo oscuro */
-    --background: 220 30% 15%;
+    --background: 147.5 25.53% 18.43%;
     --foreground: 220 20% 90%;
     --card: 0 0% 3.9%;
     --card-foreground: 0 0% 98%;
@@ -100,6 +101,7 @@
     --ring: 0 0% 83.1%;
 
     /* Ajuste de colores de marca en modo oscuro */
+    --green-600: 170 100% 10%;
     --green-700: 142 70% 25%;
     --green-900: 152 72% 15%;
     --green-400: 152 65% 45%;

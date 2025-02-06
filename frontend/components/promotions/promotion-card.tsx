@@ -1,38 +1,43 @@
 'use client';
 
 import Image from "next/image"
-import { MessageSquare, Share2, ThumbsUp, ThumbsDown, User, MapPin, Send, EllipsisVertical, Flame } from "lucide-react"
+import { MessageSquare, Share2, ThumbsUp, ThumbsDown, User, MapPin, Send, EllipsisVertical, Flame, Pencil, Trash2 } from "lucide-react"
 import { Input } from "@/components/ui/input"
 import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
-
+import { DropdownMenu, DropdownMenuContent, DropdownMenuItem, DropdownMenuTrigger } from "@/components/ui/dropdown-menu";
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
 import { Label } from "../ui/label";
+import { usePromotionContext } from "@/context/PromotionContext";
+import {Promotion} from "@/types"
+import { useState } from "react";
 
 interface PromotionCardProps {
-  title: string;
-  description: string;
-  imageUrl: string;
-  price: number;
-  store: {
-    name: string;
-    logo: string;
-  };
-  location: string;
-  likes: number;
-  comments: number;
+  promotion: Promotion;
 }
 
-export function PromotionCard({
-  title,
-  description,
-  imageUrl,
-  price,
-  store,
-  location,
-  likes,
-  comments,
-}: PromotionCardProps) {
+export function PromotionCard({ promotion }: PromotionCardProps)  {
+
+  const { openModal, deletePromotion } = usePromotionContext();
+  const { addComment } = usePromotionContext();
+  const [showAllComments, setShowAllComments] = useState(false);
+  const [newComment, setNewComment] = useState("");
+
+  // Manejar el envío del comentario
+  const handleAddComment = () => {
+    if (!newComment.trim()) return;
+
+    const comment = {
+      id: Date.now().toString(),
+      user: { name: "Usuario Actual", avatar: "/avatars/default.png" },
+      text: newComment,
+      date: "Hace un momento",
+    };
+
+    addComment(promotion.id, comment);
+    setNewComment("");
+  };
+
   return (
     <div className="mx-auto bg-[hsl(var(--card))] text-[hsl(var(--foreground))] rounded-lg shadow-md border border-[hsl(var(--border))]">
       {/* Header */}
@@ -65,27 +70,50 @@ export function PromotionCard({
               <TooltipContent>Oferta destacada</TooltipContent>
             </Tooltip>
           </TooltipProvider>
-          <Button variant="ghost" size="icon" className="text-green-600 border-solid border-2 border-green-600 h-6 w-6">
-            <EllipsisVertical />
-          </Button>
+          {/* Menú de opciones */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <Button variant="ghost" size="icon" className="text-green-600 border-solid border-2 border-green-600 h-6 w-6">
+                <EllipsisVertical />
+              </Button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent align="end" className="w-40">
+              <div className="px-2 py-1 text-sm font-medium text-[hsl(var(--foreground))]">Acciones</div>
+              <DropdownMenuItem
+                className="flex items-center gap-2 text-[hsl(var(--foreground))] hover:bg-[hsl(var(--muted))]"
+                onClick={() => openModal(promotion)} // Envía la promoción actual
+              >
+                <Pencil className="w-4 h-4" />
+                Editar
+              </DropdownMenuItem>
+
+              <DropdownMenuItem 
+                className="flex items-center gap-2 text-red-600 hover:bg-red-100 dark:hover:bg-red-900"
+                onClick={() => deletePromotion(promotion.id)}
+              >
+                <Trash2 className="w-4 h-4" />
+                Eliminar
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
         </div>
       </div>
 
       {/* Content */}
       <div className="px-4 ml-11">
-        <h2 className="text-xl font-semibold">{title}</h2>
-        <p className="text-[hsl(var(--muted-foreground))]">{description}</p>
+        <h2 className="text-xl font-semibold">{promotion.title}</h2>
+        <p className="text-[hsl(var(--muted-foreground))]">{promotion.description}</p>
         <p className="text-sm text-[hsl(var(--muted-foreground))] flex mt-1">
           <MapPin className="w-5 h-5 mr-1"/>
-          {location}
+          {promotion.location}
         </p>
       </div>
 
       {/* Image */}
       <div className="mt-4 relative h-[300px] rounded-md overflow-hidden m-3">
         <Image
-          src={imageUrl}
-          alt={title}
+          src={promotion.imageUrl}
+          alt={promotion.title}
           fill
           className="object-cover"
         />
@@ -96,7 +124,7 @@ export function PromotionCard({
         <div className="flex gap-6">
           <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
             <ThumbsUp className="w-5 h-5" />
-            <span>{likes}</span>
+            <span>{promotion.likes}</span>
           </button>
           <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
             <ThumbsDown />
@@ -108,35 +136,67 @@ export function PromotionCard({
         </div>
         <button className="flex items-center gap-2 text-[hsl(var(--muted-foreground))] hover:text-[hsl(var(--foreground))]">
           <MessageSquare className="w-5 h-5" />
-          <span>{comments} comentarios</span>
+          <span>{promotion.comments.length} comentarios</span>
         </button>
       </div>
 
-      {/* Comments */}
+      {/* Comentarios */}
       <div className="p-4 border-t border-[hsl(var(--border))]">
-        <Button variant="link" className="text-[hsl(var(--muted-foreground))] text-green-600">
-          Ver más comentarios
-        </Button>
-        <div className="flex gap-3 mb-4">
-          <Avatar className="w-8 h-8">
-            <AvatarImage src="/placeholder.svg" />
-            <AvatarFallback>JS</AvatarFallback>
-          </Avatar>
-          <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
-            <div className="font-medium">Jane Smith</div>
-            <p className="text-[hsl(var(--muted-foreground))]">Great deal! I just got some yesterday.</p>
-          </div>
-        </div>
+        {promotion.comments.length > 0 && (
+          <div>
+            <div className="flex gap-3 mb-4">
+              <Avatar className="w-8 h-8">
+                <AvatarImage src={promotion.comments[0].user.avatar} />
+                <AvatarFallback>{promotion.comments[0].user.name.charAt(0)}</AvatarFallback>
+              </Avatar>
+              <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
+                <div className="font-medium">{promotion.comments[0].user.name}</div>
+                <p className="text-[hsl(var(--muted-foreground))]">{promotion.comments[0].text}</p>
+                <p className="text-xs text-[hsl(var(--muted-foreground))]">{promotion.comments[0].date}</p>
+              </div>
+            </div>
 
-        {/* Comment input */}
+            {promotion.comments.length > 1 && !showAllComments && (
+              <Button
+                variant="link"
+                className="text-[hsl(var(--muted-foreground))] text-green-600"
+                onClick={() => setShowAllComments(true)}
+              >
+                Ver más comentarios
+              </Button>
+            )}
+
+            {showAllComments &&
+              promotion.comments.slice(1).map((comment) => (
+                <div key={comment.id} className="flex gap-3 mb-4">
+                  <Avatar className="w-8 h-8">
+                    <AvatarImage src={comment.user.avatar} />
+                    <AvatarFallback>{comment.user.name.charAt(0)}</AvatarFallback>
+                  </Avatar>
+                  <div className="bg-[hsl(var(--muted))] p-2 rounded-md">
+                    <div className="font-medium">{comment.user.name}</div>
+                    <p className="text-[hsl(var(--muted-foreground))]">{comment.text}</p>
+                    <p className="text-xs text-[hsl(var(--muted-foreground))]">{comment.date}</p>
+                  </div>
+                </div>
+              ))}
+          </div>
+        )}
+
+        {/* Agregar Comentario */}
         <div className="flex gap-3 items-center">
           <Avatar>
-            <AvatarImage src="https://github.com/shadcn.png" />
-            <AvatarFallback><User className="h-4 w-4" /></AvatarFallback>
+            <AvatarImage src="/avatars/default.png" />
+            <AvatarFallback>U</AvatarFallback>
           </Avatar>
           <div className="flex-1 flex gap-2">
-            <Input placeholder="Escribe un comentario" className="flex-1" />
-            <Button className="bg-green-400 hover:bg-green-500 text-white">
+            <Input
+              placeholder="Escribe un comentario"
+              className="flex-1"
+              value={newComment}
+              onChange={(e) => setNewComment(e.target.value)}
+            />
+            <Button onClick={handleAddComment} className="bg-green-400 hover:bg-green-500 text-white">
               <Send className="w-4 h-4 mr-2" />
               Enviar
             </Button>

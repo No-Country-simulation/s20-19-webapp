@@ -55,6 +55,7 @@ const config: Config = {
 
         // Variables de colores personalizadas con soporte para tema oscuro
         brand: {
+          green200: 'hsl(var(--green-200))',
           green700: 'hsl(var(--green-700))', 
           green900: 'hsl(var(--green-900))',
           green400: 'hsl(var(--green-400))',

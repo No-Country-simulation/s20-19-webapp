@@ -1,24 +1,35 @@
-export interface Promotion {
-  id: number;
-  title: string;
-  description: string;
-  imageUrl: string;
-  price: number;
-  originalPrice: number;
-  discount: number;
-  store: Store;
-  category: Category;
-  startDate: string;
-  endDate: string;
-  createdAt: string;
-  updatedAt: string;
+export interface Comment {
+  id: string;
+  user: {
+    name: string;
+    avatar: string;
+  };
+  text: string;
+  date: string;
 }
 
-export interface Store {
+export interface Supermarket {
   id: number;
   name: string;
   logo: string;
   address: string;
+}
+
+export interface Promotion {
+  id: string;
+  title: string;
+  description: string;
+  category: string;
+  previousPrice: string;
+  currentPrice: string;
+  discount: number;
+  supermarket: Supermarket;
+  imageUrl: string;
+  location: string;
+  likes: number;
+  dislikes: number;
+  reports: number;
+  comments: Comment[];
 }
 
 export interface Category {
