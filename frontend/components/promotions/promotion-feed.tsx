@@ -35,7 +35,7 @@ const MOCK_PROMOTIONS = [
 
 export function PromotionFeed() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-8 w-full max-w-4xl">
       {MOCK_PROMOTIONS.map((promotion) => (
         <PromotionCard key={promotion.id} {...promotion} />
       ))}

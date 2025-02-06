@@ -3,10 +3,11 @@
 import Image from "next/image"
 import { MessageSquare, Share2, ThumbsUp, ThumbsDown, User, MapPin, Send, EllipsisVertical, Flame} from "lucide-react"
 import { Input } from "@/components/ui/input"
+import { Tooltip, TooltipContent, TooltipProvider, TooltipTrigger } from "@/components/ui/tooltip";
 
 import { Avatar, AvatarFallback, AvatarImage } from '@/components/ui/avatar';
 import { Button } from '@/components/ui/button';
-import { Badge } from '@/components/ui/badge';
+import { Label } from "../ui/label";
 
 interface PromotionCardProps {
   title: string;
@@ -33,7 +34,7 @@ export function PromotionCard({
   comments,
 }: PromotionCardProps) {
   return (
-    <div className="w-full max-w-4xl mx-auto bg-white rounded-lg shadow">
+    <div className=" mx-auto bg-white rounded-lg shadow">
       {/* Header */}
       <div className="p-4 flex items-center justify-between">
         <div className="flex items-center gap-3">
@@ -50,10 +51,22 @@ export function PromotionCard({
           <span className="text-sm bg-orange-50 p-1 rounded-sm">Panadería</span>
           <span className="text-sm bg-orange-50 p-1 rounded-sm">Walmart</span>
           <span className="text-sm bg-orange-50 p-1 rounded-sm">Precio final: $20</span>
-          <span className="text-sm bg-orange-50 p-1 rounded-sm">%80</span>
-          <Badge variant="secondary" className="bg-orange-500 text-white hover:bg-orange-600 rounded-sm py-1 px-2">
-            <Flame className="h-4 w-4" />
-          </Badge>
+          <span className="text-sm bg-orange-50 p-1 rounded-sm flex gap-1">
+            <Image src="/icons/onsale.svg" alt="Descuento" width={15} height={15} />
+            %80
+          </span>
+          <TooltipProvider>
+            <Tooltip>
+              <TooltipTrigger asChild>
+                <Label className="bg-orange-500 text-white hover:bg-orange-600 rounded-sm py-1 px-2">
+                  <Flame className="h-4 w-4" />
+                </Label>
+              </TooltipTrigger>
+              <TooltipContent>
+                Oferta destacada
+              </TooltipContent>
+            </Tooltip>
+          </TooltipProvider>
           <Button variant="ghost" size="icon" className="text-green-600 border-solid border-2 border-green-600 h-6 w-6">
             <EllipsisVertical />
           </Button>
@@ -71,12 +84,12 @@ export function PromotionCard({
       </div>
 
       {/* Image */}
-      <div className="mt-4 relative h-[300px]">
+      <div className="mt-4 relative h-[300px] rounded-md overflow-hidden m-3">
         <Image
           src="https://res.cloudinary.com/dworm9bnx/image/upload/v1738203133/pan_xplxdn.png"
           alt="Sara Lee bread promotion"
           fill
-          className="object-cover rounded-md"
+          className="object-cover"
         />
       </div>
 

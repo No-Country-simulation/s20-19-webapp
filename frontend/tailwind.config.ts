@@ -1,7 +1,7 @@
 import type { Config } from 'tailwindcss';
 
 const config: Config = {
-  darkMode: ['class'],
+  darkMode: 'class', // Esto permite cambiar al modo oscuro con la clase "dark"
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -11,8 +11,7 @@ const config: Config = {
     extend: {
       backgroundImage: {
         'gradient-radial': 'radial-gradient(var(--tw-gradient-stops))',
-        'gradient-conic':
-          'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
+        'gradient-conic': 'conic-gradient(from 180deg at 50% 50%, var(--tw-gradient-stops))',
       },
       borderRadius: {
         lg: 'var(--radius)',
@@ -20,8 +19,8 @@ const config: Config = {
         sm: 'calc(var(--radius) - 4px)',
       },
       colors: {
-        background: 'hsl(var(--background))',
-        foreground: 'hsl(var(--foreground))',
+        background: 'hsl(var(--background))', 
+        foreground: 'hsl(var(--foreground))', 
         card: {
           DEFAULT: 'hsl(var(--card))',
           foreground: 'hsl(var(--card-foreground))',
@@ -53,30 +52,30 @@ const config: Config = {
         border: 'hsl(var(--border))',
         input: 'hsl(var(--input))',
         ring: 'hsl(var(--ring))',
-        chart: {
-          '1': 'hsl(var(--chart-1))',
-          '2': 'hsl(var(--chart-2))',
-          '3': 'hsl(var(--chart-3))',
-          '4': 'hsl(var(--chart-4))',
-          '5': 'hsl(var(--chart-5))',
+
+        // Variables de colores personalizadas con soporte para tema oscuro
+        brand: {
+          green700: 'hsl(var(--green-700))', 
+          green900: 'hsl(var(--green-900))',
+          green400: 'hsl(var(--green-400))',
+          orange50: 'hsl(var(--orange-50))',
+          orange400: 'hsl(var(--orange-400))',
+          gray100: 'hsl(var(--gray-100))',
+          gray300: 'hsl(var(--gray-300))',
+          gray400: 'hsl(var(--gray-400))',
+          gray500: 'hsl(var(--gray-500))',
+          gray900: 'hsl(var(--gray-900))',
+          white: 'hsl(var(--white))',
         },
       },
       keyframes: {
         'accordion-down': {
-          from: {
-            height: '0',
-          },
-          to: {
-            height: 'var(--radix-accordion-content-height)',
-          },
+          from: { height: '0' },
+          to: { height: 'var(--radix-accordion-content-height)' },
         },
         'accordion-up': {
-          from: {
-            height: 'var(--radix-accordion-content-height)',
-          },
-          to: {
-            height: '0',
-          },
+          from: { height: 'var(--radix-accordion-content-height)' },
+          to: { height: '0' },
         },
       },
       animation: {
@@ -87,4 +86,5 @@ const config: Config = {
   },
   plugins: [require('tailwindcss-animate')],
 };
+
 export default config;

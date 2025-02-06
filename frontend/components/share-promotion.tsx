@@ -5,13 +5,12 @@ import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
 import { Button } from "@/components/ui/button";
 import { User } from "lucide-react";
 
-export function SharePromotion() {
+export function SharePromotion({ onOpen }: { onOpen: () => void }) {
   return (
-    
-    <Card className="w-[917px] bg-white border-none shadow-none p-0">
-      <CardHeader className="p-0">
-        <div className="flex items-center space-x-3 w-full">
-          {/* Avatar */}
+    <Card className=" border-0 bg-transparent w-full flex max-w-4xl justify-center">
+
+        <div className="flex items-center w-full max-w-4xl bg-white rounded-lg px-4 py-3 shadow-sm">
+          {/* Avatar del usuario */}
           <Avatar>
             <AvatarImage src="https://github.com/shadcn.png" />
             <AvatarFallback>
@@ -19,15 +18,15 @@ export function SharePromotion() {
             </AvatarFallback>
           </Avatar>
 
-          {/* Botón que parece Input con texto alineado a la izquierda */}
-          <Button 
-            variant="outline"
-            className="w-full h-[42px] bg-white text-gray-500 border-gray-300 rounded-lg text-left px-4 justify-start"
+          {/* Botón para abrir el modal */}
+          <Button
+            className="flex-1 text-gray-400 font-normal bg-transparent hover:bg-gray-100 border-0 shadow-none text-left"
+            variant="ghost"
+            onClick={onOpen}
           >
             Crear publicación
           </Button>
         </div>
-      </CardHeader>
-    </Card>
+    </Card> 
   );
 }
