@@ -11,7 +11,7 @@ export default function Home() {
 
   return (
     <MainLayout>
-      <div className="container mx-auto space-y-4 mt-10 flex flex-col items-center">
+      <div className="container mx-auto space-y-4 mt-10 flex flex-col items-center bg-[hsl(var(--background))] text-[hsl(var(--foreground))] transition-colors">
         <SharePromotion onOpen={() => setIsModalOpen(true)} />
         <PromotionFeed />
       </div>
